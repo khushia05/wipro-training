@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3_class_and_object_SRP_OOP", "Day3_class_and_object_SRP_OOP\Day3_class_and_object_SRP_OOP.csproj", "{58B41617-D86B-4D7C-ACB4-7C659D7C6389}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58B41617-D86B-4D7C-ACB4-7C659D7C6389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B41617-D86B-4D7C-ACB4-7C659D7C6389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B41617-D86B-4D7C-ACB4-7C659D7C6389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B41617-D86B-4D7C-ACB4-7C659D7C6389}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F111D39-ADCB-4F29-80D5-38B293A82883}
+	EndGlobalSection
+EndGlobal
