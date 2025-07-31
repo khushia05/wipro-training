@@ -1,0 +1,14 @@
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\bin\Debug\net8.0\Day1_EmailValidation.exe
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\bin\Debug\net8.0\Day1_EmailValidation.deps.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\bin\Debug\net8.0\Day1_EmailValidation.runtimeconfig.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\bin\Debug\net8.0\Day1_EmailValidation.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\bin\Debug\net8.0\Day1_EmailValidation.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.GeneratedMSBuildEditorConfig.editorconfig
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.AssemblyInfoInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.AssemblyInfo.cs
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.csproj.CoreCompileInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\refint\Day1_EmailValidation.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\Day1_EmailValidation.genruntimeconfig.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1_EmailValidation\Day1_EmailValidation\obj\Debug\net8.0\ref\Day1_EmailValidation.dll

@@ -1,0 +1,8 @@
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.GeneratedMSBuildEditorConfig.editorconfig
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.AssemblyInfoInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.AssemblyInfo.cs
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.csproj.CoreCompileInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.MvcApplicationPartsAssemblyInfo.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.RazorAssemblyInfo.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day2_BasicIntroductionApp_RazorPages\obj\Debug\net8.0\Day2_BasicIntroductionApp_RazorPages.RazorAssemblyInfo.cs

@@ -1,0 +1,11 @@
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\bin\Debug\net8.0\Calculator_Assignment1.deps.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\bin\Debug\net8.0\Calculator_Assignment1.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\bin\Debug\net8.0\Calculator_Assignment1.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.GeneratedMSBuildEditorConfig.editorconfig
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.AssemblyInfoInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.AssemblyInfo.cs
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.csproj.CoreCompileInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\refint\Calculator_Assignment1.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\Calculator_Assignment1.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Calculator_Assignment1\Calculator_Assignment1\obj\Debug\net8.0\ref\Calculator_Assignment1.dll

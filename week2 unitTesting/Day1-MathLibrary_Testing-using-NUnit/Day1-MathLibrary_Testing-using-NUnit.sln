@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1-MathLibrary_Testing-using-NUnit", "Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit.csproj", "{6695FDEC-BD07-438C-AF7F-2F4D17DCD2DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibrary.Tests", "MathLibrary.Tests\MathLibrary.Tests.csproj", "{48E89F09-4258-42AE-8184-307A21F54E88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6695FDEC-BD07-438C-AF7F-2F4D17DCD2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6695FDEC-BD07-438C-AF7F-2F4D17DCD2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6695FDEC-BD07-438C-AF7F-2F4D17DCD2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6695FDEC-BD07-438C-AF7F-2F4D17DCD2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E89F09-4258-42AE-8184-307A21F54E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E89F09-4258-42AE-8184-307A21F54E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E89F09-4258-42AE-8184-307A21F54E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E89F09-4258-42AE-8184-307A21F54E88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA0DAC91-85B9-45FB-BE7F-A75D32B85449}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,14 @@
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\bin\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.exe
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\bin\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.deps.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\bin\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.runtimeconfig.json
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\bin\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\bin\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.GeneratedMSBuildEditorConfig.editorconfig
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.AssemblyInfoInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.AssemblyInfo.cs
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.csproj.CoreCompileInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\refint\Day1-MathLibrary_Testing-using-NUnit.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\Day1-MathLibrary_Testing-using-NUnit.genruntimeconfig.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\Day1-MathLibrary_Testing-using-NUnit\Day1-MathLibrary_Testing-using-NUnit\obj\Debug\net8.0\ref\Day1-MathLibrary_Testing-using-NUnit.dll

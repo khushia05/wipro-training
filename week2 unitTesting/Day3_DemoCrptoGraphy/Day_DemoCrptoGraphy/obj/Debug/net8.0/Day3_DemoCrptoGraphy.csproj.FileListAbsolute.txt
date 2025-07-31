@@ -1,0 +1,14 @@
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\bin\Debug\net8.0\Day3_DemoCrptoGraphy.exe
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\bin\Debug\net8.0\Day3_DemoCrptoGraphy.deps.json
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\bin\Debug\net8.0\Day3_DemoCrptoGraphy.runtimeconfig.json
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\bin\Debug\net8.0\Day3_DemoCrptoGraphy.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\bin\Debug\net8.0\Day3_DemoCrptoGraphy.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.GeneratedMSBuildEditorConfig.editorconfig
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.AssemblyInfoInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.AssemblyInfo.cs
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.csproj.CoreCompileInputs.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\refint\Day3_DemoCrptoGraphy.dll
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.pdb
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\Day3_DemoCrptoGraphy.genruntimeconfig.cache
+E:\Placement preparation\wipro_training\week2 unitTesting\DemoCrptoGraphy\DemoCrptoGraphy\obj\Debug\net8.0\ref\Day3_DemoCrptoGraphy.dll
