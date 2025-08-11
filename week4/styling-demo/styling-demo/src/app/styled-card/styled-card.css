@@ -1,0 +1,8 @@
+/* Creating an external css for the card */
+.card{
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    
+}

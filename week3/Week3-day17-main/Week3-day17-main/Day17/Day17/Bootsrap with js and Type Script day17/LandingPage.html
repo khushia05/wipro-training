@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> College Landing Page Using bootsrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Adding bootstrap via link -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <a href="#" class="navbar-brand">Edu Future Instituion</a>
+        <div class=" navbar-collapse"><!-- use "collapse " for collapsing that navbar  -->
+            <ul class="navbar-nav ml-auto text-bg-light">
+                <li class="nav-item "><a href="#" class="nav-link">home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Cource</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Apply online</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero card -->
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2>Welcome to our institute Edu Future</h2>
+                <p>Your future begins here !! Explore world class education opportunities</p>
+                <button class=" btn btn-success">Explore cources</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- Cource card -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Engineering
+                        </h5>
+                        <p class="card-text">4 year technical program in various domain </p>
+                        <button class="btn btn-primary">Know More</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Art & Science
+                        </h5>
+                        <p class="card-text">BBuild Creativity and analyical across stream</p>
+                        <button class="btn btn-primary">Know More</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Admittion Form -->
+    <div class="container mt-5">
+        <h3>Admission form </h3>
+        <div id="alertBox"></div>
+            <form action="" id="admissionform">
+                <div class="form-group">
+                     <label for="name">Name</label>
+                     <input type="text"  id="name" class="form-control">
+                </div>
+
+                <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" id="email" class="form-control">
+                </div>
+
+                <div class="form-group">
+                     <label for="contact">Contact Number:</label>
+                     <input type="text"  id="contact" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                     <label for="cource">Cources</label>
+                     <select id="cource" class="form-control">
+                        <option>>--------select--------</option>
+                        <option >Engineering</option>
+                        <option >Management</option>
+                        <option >Art and science</option>
+                     </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+            <div id="submittedData" class="mt-4"></div>
+            <!-- we will use this dynamically to diplay or view the content -->
+             
+        </div>
+    </div>
+   
+
+
+    <!-- for Alert we will use javascript -->
+     <script src="script.js"></script>
+</body>
+
+</html>
