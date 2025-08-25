@@ -1,0 +1,19 @@
+<div class="card">
+  <h2>Available Courses</h2>
+
+  <ul>
+    <li *ngFor="let course of courses; trackBy: trackById"
+        [class.active]="isActive(course)">
+      <div class="meta">
+        <div class="title">{{ course.title }}</div>
+        <div class="sub">
+          <span>{{ course.category }}</span> •
+          <span>{{ course.level }}</span>
+        </div>
+      </div>
+      <button (click)="onViewDetails(course)">View Details</button>
+    </li>
+  </ul>
+
+  <p *ngIf="!courses?.length" class="muted">No courses found.</p>
+</div>

@@ -1,0 +1,27 @@
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+h1 { margin-bottom: 16px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.clear {
+  margin-top: 16px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  cursor: pointer;
+}
+.clear:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+}

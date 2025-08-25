@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <div class="grid">
+    <!-- COURSE LIST (emits click events) -->
+    <app-course-list
+      [courses]="courses"
+      [activeCourse]="selectedCourse"
+      (selectCourse)="onSelectCourse($event)">
+    </app-course-list>
+
+    <!-- COURSE DETAIL (two-way bind edits to same object) -->
+    <app-course-detail
+      [course]="selectedCourse">
+    </app-course-detail>
+  </div>
+
+  <button class="clear" (click)="clearSelection()" [disabled]="!selectedCourse">
+    Clear Selection
+  </button>
+</div>

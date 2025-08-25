@@ -1,0 +1,31 @@
+.card {
+  border: 1px solid #e6e6e6;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  min-height: 260px;
+}
+h2 { margin-top: 0; }
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+input, textarea, select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font: inherit;
+  box-sizing: border-box;
+}
+.preview {
+  margin-top: 12px;
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+.muted { color: #666; }

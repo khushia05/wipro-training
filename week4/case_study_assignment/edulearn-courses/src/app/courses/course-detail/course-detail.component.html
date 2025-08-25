@@ -1,0 +1,41 @@
+<div class="card">
+  <h2>Course Details</h2>
+
+  <ng-container *ngIf="course; else noSelection">
+    <!-- TWO-WAY BINDING: edits reflect in list immediately -->
+    <label>
+      Title
+      <input [(ngModel)]="course.title" placeholder="Enter title" />
+    </label>
+
+    <label>
+      Description
+      <textarea [(ngModel)]="course.description" rows="4" placeholder="Enter description"></textarea>
+    </label>
+
+    <label>
+      Category
+      <input [(ngModel)]="course.category" placeholder="Enter category" />
+    </label>
+
+    <label>
+      Level
+      <select [(ngModel)]="course.level">
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+    </label>
+
+    <div class="preview">
+      <h3>Live Preview</h3>
+      <p><strong>{{ course.title }}</strong></p>
+      <p>{{ course.description }}</p>
+      <p class="muted">{{ course.category }} • {{ course.level }}</p>
+    </div>
+  </ng-container>
+
+  <ng-template #noSelection>
+    <p class="muted">Select a course from the list to view/edit details.</p>
+  </ng-template>
+</div>
