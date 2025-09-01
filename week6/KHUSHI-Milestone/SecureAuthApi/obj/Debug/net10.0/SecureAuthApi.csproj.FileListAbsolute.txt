@@ -1,0 +1,8 @@
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.csproj.AssemblyReference.cache
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.AssemblyInfoInputs.cache
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.AssemblyInfo.cs
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.csproj.CoreCompileInputs.cache
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\pkagr\Downloads\KHUSHI-Milestone\SecureAuthApi\obj\Debug\net10.0\SecureAuthApi.MvcApplicationPartsAssemblyInfo.cache

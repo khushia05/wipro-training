@@ -1,0 +1,36 @@
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "Manage Books (Disconnected)";
+}
+
+<h2>Manage Books (Disconnected)</h2>
+
+<form asp-action="SaveDisconnectedChanges" method="post">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                @foreach (System.Data.DataColumn col in Model.Columns)
+                {
+                    <th>@col.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Rows.Count; i++)
+            {
+                var row = Model.Rows[i];
+                <tr>
+                    @for (int j = 0; j < Model.Columns.Count; j++)
+                    {
+                        var col = Model.Columns[j];
+                        <td>
+                            <input type="text" name="rows[@i].@col.ColumnName" value="@row[col]" class="form-control"/>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

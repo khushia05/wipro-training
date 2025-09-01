@@ -1,0 +1,31 @@
+@model YourApp.Models.Book
+@{
+    ViewBag.Title = "Book Details";
+}
+
+<h2>Book Details</h2>
+
+<div>
+    <h4>@Model.Title</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Author</dt>
+        <dd class="col-sm-10">@Model.Author</dd>
+
+        <dt class="col-sm-2">ISBN</dt>
+        <dd class="col-sm-10">@Model.ISBN</dd>
+
+        <dt class="col-sm-2">Price</dt>
+        <dd class="col-sm-10">@Model.Price</dd>
+
+        <dt class="col-sm-2">Published Date</dt>
+        <dd class="col-sm-10">@Model.PublishedDate?.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>
