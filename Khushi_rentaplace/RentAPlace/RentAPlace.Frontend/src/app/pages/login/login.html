@@ -1,0 +1,71 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1 class="login-title">Welcome Back</h1>
+      <p class="login-subtitle">Sign in to your RentAPlace account</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- User type selection removed - role is determined by backend -->
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="getFieldError('email')"
+          placeholder="Enter your email">
+        <div class="form-error" *ngIf="getFieldError('email')">
+          {{ getFieldError('email') }}
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-input"
+          [class.error]="getFieldError('password')"
+          placeholder="Enter your password">
+        <div class="form-error" *ngIf="getFieldError('password')">
+          {{ getFieldError('password') }}
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="error">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+        {{ error }}
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        class="login-button"
+        [disabled]="isLoading">
+        <div class="button-content">
+          <div class="loading-spinner" *ngIf="isLoading"></div>
+          <span *ngIf="!isLoading">Sign In</span>
+          <span *ngIf="isLoading">Signing In...</span>
+        </div>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p class="register-text">
+        Don't have an account? 
+        <a (click)="onRegisterClick()" class="register-link">Sign up here</a>
+      </p>
+    </div>
+  </div>
+</div>

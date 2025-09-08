@@ -1,0 +1,147 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>My Profile</h1>
+  </div>
+
+  <div class="profile-content" *ngIf="!loading && user">
+    <div class="profile-card">
+      <div class="profile-header-section">
+        <div class="profile-avatar">
+          <span class="avatar-text">{{ user.firstName?.charAt(0) }}{{ user.lastName?.charAt(0) }}</span>
+        </div>
+        <div class="profile-info">
+          <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+          <p class="user-role">{{ user.userType }}</p>
+        </div>
+        <button 
+          class="edit-button" 
+          (click)="toggleEdit()"
+          [disabled]="loading">
+          {{ editing ? 'Cancel' : 'Edit Profile' }}
+        </button>
+      </div>
+
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="editing; else viewMode">
+        <div class="form-section">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-input"
+                [class.error]="getFieldError('firstName')"
+                placeholder="Enter your first name">
+              <div class="form-error" *ngIf="getFieldError('firstName')">
+                {{ getFieldError('firstName') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-input"
+                [class.error]="getFieldError('lastName')"
+                placeholder="Enter your last name">
+              <div class="form-error" *ngIf="getFieldError('lastName')">
+                {{ getFieldError('lastName') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-input"
+              [class.error]="getFieldError('email')"
+              placeholder="Enter your email address">
+            <div class="form-error" *ngIf="getFieldError('email')">
+              {{ getFieldError('email') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+              class="form-input"
+              [class.error]="getFieldError('phoneNumber')"
+              placeholder="Enter your phone number">
+            <div class="form-error" *ngIf="getFieldError('phoneNumber')">
+              {{ getFieldError('phoneNumber') }}
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button 
+              type="button" 
+              class="cancel-button"
+              (click)="cancelEdit()"
+              [disabled]="loading">
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="save-button"
+              [disabled]="profileForm.invalid || loading">
+              <span *ngIf="loading" class="loading-spinner"></span>
+              {{ loading ? 'Saving...' : 'Save Changes' }}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <ng-template #viewMode>
+        <div class="profile-details">
+          <div class="detail-item">
+            <label>First Name</label>
+            <span>{{ user.firstName }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Last Name</label>
+            <span>{{ user.lastName }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Email Address</label>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Phone Number</label>
+            <span>{{ user.phoneNumber }}</span>
+          </div>
+          <div class="detail-item">
+            <label>User Type</label>
+            <span class="user-type-badge">{{ user.userType }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="loading && !user">
+    <div class="loading-spinner large"></div>
+    <p>Loading profile...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadUserProfile()">
+      Try Again
+    </button>
+  </div>
+</div>

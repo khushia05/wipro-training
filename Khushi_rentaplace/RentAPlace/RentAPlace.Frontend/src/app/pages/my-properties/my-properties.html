@@ -1,0 +1,151 @@
+<div class="my-properties-container">
+  <div class="my-properties-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>My Properties</h1>
+    <button class="add-property-btn" (click)="router.navigate(['/add-property'])">
+      + Add Property
+    </button>
+  </div>
+
+  <div class="my-properties-content" *ngIf="!loading && properties.length > 0">
+    <div class="properties-filters">
+      <div class="filter-group">
+        <label for="statusFilter">Filter by Status:</label>
+        <select 
+          id="statusFilter" 
+          [(ngModel)]="filterStatus" 
+          (change)="onFilterChange()"
+          class="filter-select">
+          <option value="all">All Properties</option>
+          <option value="available">Available</option>
+          <option value="unavailable">Unavailable</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="properties-grid">
+      <div class="property-card" *ngFor="let property of filteredProperties">
+        <div class="property-image">
+          <img [src]="getMainImage(property)" 
+               [alt]="property.name"
+               (error)="onImageError($event)">
+          <div class="property-status" [ngClass]="property.isAvailable ? 'available' : 'unavailable'">
+            {{ property.isAvailable ? 'Available' : 'Unavailable' }}
+          </div>
+        </div>
+        
+        <div class="property-details">
+          <div class="property-header">
+            <h3 class="property-name">{{ property.name }}</h3>
+            <div class="property-actions">
+              <button class="action-btn edit-btn" (click)="editProperty(property.id)" title="Edit Property">
+                ✏️
+              </button>
+              <button class="action-btn delete-btn" (click)="deleteProperty(property.id)" title="Delete Property">
+                🗑️
+              </button>
+            </div>
+          </div>
+          
+          <div class="property-info">
+            <div class="info-item">
+              <span class="info-label">📍</span>
+              <span class="info-value">{{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.zipCode }}</span>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-item">
+                <span class="info-label">🏠</span>
+                <span class="info-value">{{ property.propertyType }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">🛏️</span>
+                <span class="info-value">{{ property.bedrooms }} bed{{ property.bedrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">🛁</span>
+                <span class="info-value">{{ property.bathrooms }} bath{{ property.bathrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">📐</span>
+                <span class="info-value">{{ property.area }} sq ft</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">📅</span>
+              <span class="info-value">Listed {{ formatDate(property.createdAt) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">📊</span>
+              <span class="info-value">{{ property.bookingCount }} booking{{ property.bookingCount !== 1 ? 's' : '' }}</span>
+            </div>
+          </div>
+          
+          <div class="property-description">
+            <p>{{ property.description }}</p>
+          </div>
+          
+          <div class="property-features" *ngIf="property.features.length > 0">
+            <div class="features-label">Features:</div>
+            <div class="features-list">
+              <span *ngFor="let feature of property.features" class="feature-tag">
+                {{ feature }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="property-footer">
+            <div class="price-section">
+              <span class="price">{{ formatPrice(property.price) }}</span>
+              <span class="price-period">/month</span>
+            </div>
+            
+            <div class="property-actions-footer">
+              <button 
+                class="toggle-availability-btn" 
+                [ngClass]="property.isAvailable ? 'make-unavailable' : 'make-available'"
+                (click)="toggleAvailability(property.id)"
+                [disabled]="loading">
+                {{ property.isAvailable ? 'Mark Unavailable' : 'Mark Available' }}
+              </button>
+              
+              <button 
+                class="view-bookings-btn" 
+                (click)="viewBookings(property.id)">
+                View Bookings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && properties.length === 0">
+    <div class="empty-icon">🏠</div>
+    <h2>No Properties Yet</h2>
+    <p>You haven't added any properties yet. Start by adding your first property to begin renting!</p>
+    <button class="add-property-btn" (click)="router.navigate(['/add-property'])">
+      + Add Your First Property
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading your properties...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadMyProperties()">
+      Try Again
+    </button>
+  </div>
+</div>

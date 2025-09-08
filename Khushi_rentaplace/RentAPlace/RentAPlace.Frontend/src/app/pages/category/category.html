@@ -1,0 +1,54 @@
+<div class="category-page">
+  <div class="container">
+    <!-- Header -->
+    <div class="page-header">
+      <button class="back-button" (click)="goBack()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </button>
+      <h1 class="page-title">{{ categoryName }} Properties</h1>
+      <p class="page-subtitle">Discover amazing {{ categoryName.toLowerCase() }} for your next stay</p>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="loading-spinner"></div>
+      <p>Loading {{ categoryName.toLowerCase() }} properties...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-container" *ngIf="error && !isLoading">
+      <div class="error-icon">⚠️</div>
+      <h3>Oops! Something went wrong</h3>
+      <p>{{ error }}</p>
+      <button class="retry-button" (click)="loadPropertiesByCategory()">Try Again</button>
+    </div>
+
+    <!-- Properties Grid -->
+    <div class="properties-section" *ngIf="!isLoading && !error">
+      <div class="results-header" *ngIf="properties.length > 0">
+        <h2>{{ properties.length }} {{ categoryName.toLowerCase() }} found</h2>
+      </div>
+
+      <div class="properties-grid" *ngIf="properties.length > 0">
+        <app-property-card 
+          *ngFor="let property of properties" 
+          [property]="property"
+          (propertyClick)="onPropertyClick($event)"
+          (bookNow)="onBookNow($event)">
+        </app-property-card>
+      </div>
+
+      <!-- No Results State -->
+      <div class="no-results" *ngIf="properties.length === 0">
+        <div class="no-results-icon">🏠</div>
+        <h3>No properties available in this category</h3>
+        <p>We couldn't find any {{ categoryName.toLowerCase() }} properties at the moment.</p>
+        <p>Try checking back later or explore other categories.</p>
+        <button class="explore-button" (click)="goBack()">Explore Other Categories</button>
+      </div>
+    </div>
+  </div>
+</div>

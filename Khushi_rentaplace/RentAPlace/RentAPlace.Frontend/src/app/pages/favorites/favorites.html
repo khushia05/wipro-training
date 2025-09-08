@@ -1,0 +1,131 @@
+<div class="favorites-container">
+  <div class="favorites-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>My Favorites</h1>
+  </div>
+
+  <div class="favorites-content" *ngIf="!loading && favorites.length > 0">
+    <div class="favorites-filters">
+      <div class="filter-group">
+        <label for="typeFilter">Filter by Type:</label>
+        <select 
+          id="typeFilter" 
+          [(ngModel)]="filterType" 
+          (change)="onFilterChange()"
+          class="filter-select">
+          <option value="all">All Types</option>
+          <option value="apartment">Apartments</option>
+          <option value="house">Houses</option>
+          <option value="villa">Villas</option>
+          <option value="studio">Studios</option>
+          <option value="loft">Lofts</option>
+          <option value="townhouse">Townhouses</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="favorites-grid">
+      <div class="favorite-card" *ngFor="let favorite of filteredFavorites">
+        <div class="favorite-image">
+          <img [src]="favorite.propertyImage || '/assets/placeholder-property.jpg'" 
+               [alt]="favorite.propertyName"
+               (error)="$event.target.src='/assets/placeholder-property.jpg'">
+          <div class="favorite-overlay">
+            <button 
+              class="remove-favorite-btn" 
+              (click)="removeFromFavorites(favorite.id)"
+              [disabled]="loading"
+              title="Remove from favorites">
+              ❤️
+            </button>
+          </div>
+        </div>
+        
+        <div class="favorite-details">
+          <div class="favorite-header">
+            <h3 class="property-name">{{ favorite.propertyName }}</h3>
+            <div class="property-type">
+              <span class="type-icon">{{ getPropertyTypeIcon(favorite.propertyType) }}</span>
+              <span class="type-text">{{ favorite.propertyType }}</span>
+            </div>
+          </div>
+          
+          <div class="property-info">
+            <div class="info-row">
+              <span class="info-item">
+                <span class="info-icon">📍</span>
+                {{ favorite.address }}
+              </span>
+            </div>
+            
+            <div class="info-row">
+              <span class="info-item">
+                <span class="info-icon">🛏️</span>
+                {{ favorite.bedrooms }} bed{{ favorite.bedrooms !== 1 ? 's' : '' }}
+              </span>
+              <span class="info-item">
+                <span class="info-icon">🛁</span>
+                {{ favorite.bathrooms }} bath{{ favorite.bathrooms !== 1 ? 's' : '' }}
+              </span>
+              <span class="info-item">
+                <span class="info-icon">📐</span>
+                {{ favorite.area }} sq ft
+              </span>
+            </div>
+            
+            <div class="info-row">
+              <span class="info-item">
+                <span class="info-icon">📅</span>
+                Added {{ formatDate(favorite.addedDate) }}
+              </span>
+              <span class="availability" [ngClass]="favorite.isAvailable ? 'available' : 'unavailable'">
+                {{ favorite.isAvailable ? 'Available' : 'Unavailable' }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="favorite-footer">
+            <div class="price-section">
+              <span class="price">{{ formatPrice(favorite.price) }}</span>
+              <span class="price-period">/month</span>
+            </div>
+            
+            <div class="favorite-actions">
+              <button 
+                class="view-property-btn" 
+                (click)="viewProperty(favorite.propertyId)">
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && favorites.length === 0">
+    <div class="empty-icon">❤️</div>
+    <h2>No Favorites Yet</h2>
+    <p>You haven't added any properties to your favorites yet. Start exploring to find properties you love!</p>
+    <button class="explore-btn" (click)="router.navigate(['/'])">
+      Explore Properties
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading your favorites...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadFavorites()">
+      Try Again
+    </button>
+  </div>
+</div>

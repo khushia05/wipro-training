@@ -1,0 +1,86 @@
+<div class="property-card">
+  <!-- Image Gallery -->
+  <div class="property-images">
+    <div class="main-image" (click)="onPropertyClick()">
+      <img [src]="getMainImage()" 
+           [alt]="property.title"
+           (error)="onImageError($event)">
+      <div class="property-rating" *ngIf="property.averageRating">
+        <span class="rating-star">★</span>
+        <span class="rating-value">{{ property.averageRating | number:'1.1-1' }}</span>
+      </div>
+      <div class="image-count" *ngIf="property.images && property.images.length > 1">
+        <span>{{ property.images.length }} photos</span>
+      </div>
+    </div>
+    
+    <!-- Additional Images (4-5 images total) -->
+    <div class="additional-images" *ngIf="property.images && property.images.length > 1">
+      <img *ngFor="let image of property.images.slice(1, 4); let i = index" 
+           [src]="getImageUrl(image)" 
+           [alt]="property.title"
+           (click)="onPropertyClick()"
+           (error)="onImageError($event)"
+           class="thumbnail-image">
+    </div>
+  </div>
+  
+  <div class="property-content">
+    <!-- Title -->
+    <h3 class="property-title" (click)="onPropertyClick()">{{ property.title }}</h3>
+    
+    <!-- Description -->
+    <p class="property-description" *ngIf="property.description">
+      {{ property.description.length > 120 ? (property.description | slice:0:120) + '...' : property.description }}
+    </p>
+    
+    <!-- Full Address -->
+    <div class="property-address">
+      <div class="address-line">{{ property.address }}</div>
+      <div class="address-details">
+        <span class="city">{{ property.city }}</span>
+        <span class="separator" *ngIf="property.city && property.state">, </span>
+        <span class="state">{{ property.state }}</span>
+        <span class="separator" *ngIf="property.state && property.country">, </span>
+        <span class="country">{{ property.country }}</span>
+        <span class="zipcode" *ngIf="property.postalCode"> {{ property.postalCode }}</span>
+      </div>
+    </div>
+    
+    <!-- Property Details -->
+    <div class="property-details">
+      <span class="guests">👥 {{ property.maxGuests }} guests</span>
+      <span class="bedrooms">🛏️ {{ property.bedrooms }} bedrooms</span>
+      <span class="bathrooms">🚿 {{ property.bathrooms }} bathrooms</span>
+    </div>
+    
+    <!-- Features -->
+    <div class="property-features" *ngIf="property.features && property.features.length > 0">
+      <span class="feature-tag" *ngFor="let feature of property.features.slice(0, 3)">
+        {{ feature }}
+      </span>
+      <span class="more-features" *ngIf="property.features.length > 3">
+        +{{ property.features.length - 3 }} more
+      </span>
+    </div>
+    
+    <!-- Price and Actions -->
+    <div class="property-footer">
+      <div class="price">
+        <span class="price-amount">₹{{ property.pricePerNight }}</span>
+        <span class="price-period">/ night</span>
+      </div>
+      <div class="property-type">{{ property.propertyType }}</div>
+    </div>
+    
+    <!-- Book Now Button -->
+    <div class="property-actions">
+      <button 
+        class="book-now-btn" 
+        (click)="onBookNow($event)"
+        [disabled]="!property.isAvailable">
+        {{ property.isAvailable ? 'Book Now' : 'Not Available' }}
+      </button>
+    </div>
+  </div>
+</div>

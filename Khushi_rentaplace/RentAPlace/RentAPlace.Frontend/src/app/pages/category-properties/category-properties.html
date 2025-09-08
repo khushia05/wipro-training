@@ -1,0 +1,136 @@
+<div class="category-properties-container">
+  <!-- Header -->
+  <div class="category-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Home
+    </button>
+    <h1>{{ getCategoryDisplayName() }}</h1>
+    <p class="category-subtitle">Discover amazing {{ category }}s for your perfect stay</p>
+  </div>
+
+  <!-- Properties Grid -->
+  <div class="properties-content" *ngIf="!loading && properties.length > 0">
+    <div class="properties-grid">
+      <div class="property-card" *ngFor="let property of properties">
+        <!-- Image Carousel -->
+        <div class="property-images">
+          <div class="image-container">
+            <img [src]="getCurrentImage(property)" 
+                 [alt]="property.name"
+                 (error)="onImageError($event)">
+            
+            <!-- Navigation arrows -->
+            <button class="nav-arrow nav-arrow-left" 
+                    (click)="previousImage(property.id, property)" 
+                    *ngIf="property.images.length > 1">
+              ‹
+            </button>
+            <button class="nav-arrow nav-arrow-right" 
+                    (click)="nextImage(property.id, property)" 
+                    *ngIf="property.images.length > 1">
+              ›
+            </button>
+            
+            <!-- Image counter -->
+            <div class="image-counter" *ngIf="property.images.length > 1">
+              {{ currentImageIndex[property.id] + 1 }} / {{ property.images.length }}
+            </div>
+          </div>
+          
+          <!-- Thumbnail dots -->
+          <div class="thumbnail-dots" *ngIf="property.images.length > 1">
+            <button class="dot" 
+                    *ngFor="let image of property.images; let i = index"
+                    [class.active]="i === currentImageIndex[property.id]"
+                    (click)="goToImage(property.id, i)">
+            </button>
+          </div>
+        </div>
+
+        <!-- Property Details -->
+        <div class="property-details">
+          <div class="property-header">
+            <h3 class="property-title">{{ property.name }}</h3>
+            <div class="property-location">
+              <span class="location-icon">📍</span>
+              <span class="location-text">{{ property.city }}, {{ property.state }}</span>
+            </div>
+          </div>
+
+          <div class="property-info">
+            <div class="info-row">
+              <div class="info-item">
+                <span class="info-icon">👥</span>
+                <span class="info-text">{{ property.maxGuests }} guests</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🛏️</span>
+                <span class="info-text">{{ property.bedrooms }} bed{{ property.bedrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🛁</span>
+                <span class="info-text">{{ property.bathrooms }} bath{{ property.bathrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📐</span>
+                <span class="info-text">{{ property.area }} sq ft</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-description">
+            <p>{{ property.description }}</p>
+          </div>
+
+          <div class="property-features" *ngIf="property.features.length > 0">
+            <div class="features-list">
+              <span *ngFor="let feature of property.features.slice(0, 4)" class="feature-tag">
+                {{ feature }}
+              </span>
+              <span *ngIf="property.features.length > 4" class="feature-more">
+                +{{ property.features.length - 4 }} more
+              </span>
+            </div>
+          </div>
+
+          <div class="property-footer">
+            <div class="price-section">
+              <span class="price">{{ formatPrice(property.price) }}</span>
+              <span class="price-period">/night</span>
+            </div>
+            <button class="book-now-btn" (click)="onBookNow(property)">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!loading && properties.length === 0">
+    <div class="empty-icon">🏠</div>
+    <h2>No {{ getCategoryDisplayName() }} Found</h2>
+    <p>We couldn't find any {{ category }}s at the moment. Please check back later or explore other categories.</p>
+    <button class="back-home-btn" (click)="goBack()">
+      Explore Other Categories
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading {{ category }}s...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadPropertiesByCategory()">
+      Try Again
+    </button>
+  </div>
+</div>

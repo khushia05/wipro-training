@@ -1,0 +1,118 @@
+<div class="search-results-container">
+  <div class="search-results-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Search
+    </button>
+    <h1>Search Results</h1>
+    <div class="search-summary" *ngIf="searchParams.location">
+      <p>Found {{ properties.length }} properties in {{ searchParams.location }} for {{ searchParams.guests || 1 }} guests</p>
+    </div>
+    <button class="clear-search-btn" (click)="clearSearch()">
+      Clear Search
+    </button>
+  </div>
+
+  <div class="search-results-content" *ngIf="!loading && properties.length > 0">
+    <div class="properties-grid">
+      <div class="property-card" *ngFor="let property of properties">
+        <div class="property-image">
+          <img [src]="getPropertyImage(property)" 
+               [alt]="property.name"
+               (error)="onImageError($event)">
+          <div class="property-type-badge">
+            {{ property.propertyType }}
+          </div>
+        </div>
+        
+        <div class="property-details">
+          <div class="property-header">
+            <h3 class="property-name">{{ property.name }}</h3>
+            <div class="property-location">
+              <span class="location-icon">📍</span>
+              <span class="location-text">{{ property.city }}, {{ property.state }}</span>
+            </div>
+          </div>
+          
+          <div class="property-info">
+            <div class="info-row">
+              <div class="info-item">
+                <span class="info-icon">👥</span>
+                <span class="info-text">{{ searchParams.guests || 1 }} guests</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🛏️</span>
+                <span class="info-text">{{ property.bedrooms }} bed{{ property.bedrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🛁</span>
+                <span class="info-text">{{ property.bathrooms }} bath{{ property.bathrooms !== 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📐</span>
+                <span class="info-text">{{ property.area }} sq ft</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="property-description">
+            <p>{{ property.description }}</p>
+          </div>
+          
+          <div class="property-features" *ngIf="property.features.length > 0">
+            <div class="features-list">
+              <span *ngFor="let feature of property.features" class="feature-tag">
+                {{ feature }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="property-footer">
+            <div class="price-section">
+              <span class="price">{{ formatPrice(property.price) }}</span>
+              <span class="price-period">/night</span>
+            </div>
+            
+            <div class="booking-section">
+              <button 
+                class="view-details-btn" 
+                (click)="viewPropertyDetails(property)">
+                View Details
+              </button>
+              <button 
+                class="book-now-btn" 
+                (click)="onBookNow(property)"
+                [disabled]="bookingLoading[property.id]">
+                <span *ngIf="bookingLoading[property.id]" class="loading-spinner"></span>
+                {{ bookingLoading[property.id] ? 'Booking...' : 'Book Now' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && properties.length === 0">
+    <div class="empty-icon">🔍</div>
+    <h2>No Properties Found</h2>
+    <p>We couldn't find any properties matching your search criteria. Try adjusting your filters or search in a different location.</p>
+    <button class="search-again-btn" (click)="goBack()">
+      Search Again
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Searching properties...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="searchProperties()">
+      Try Again
+    </button>
+  </div>
+</div>

@@ -1,0 +1,184 @@
+<div class="apartment-details-container" *ngIf="property">
+  <!-- Header -->
+  <div class="apartment-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Search
+    </button>
+    <h1 class="apartment-title">{{ property.name }}</h1>
+    <div class="apartment-location">
+      <span class="location-icon">📍</span>
+      <span class="location-text">{{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.zipCode }}</span>
+    </div>
+  </div>
+
+  <!-- Image Gallery -->
+  <div class="image-gallery" *ngIf="property.images.length > 0">
+    <div class="main-image">
+      <img [src]="getPropertyImage()" 
+           [alt]="property.name"
+           (error)="onImageError($event)">
+      
+      <!-- Navigation arrows -->
+      <button class="nav-arrow nav-arrow-left" (click)="previousImage()" *ngIf="property.images.length > 1">
+        ‹
+      </button>
+      <button class="nav-arrow nav-arrow-right" (click)="nextImage()" *ngIf="property.images.length > 1">
+        ›
+      </button>
+      
+      <!-- Image counter -->
+      <div class="image-counter" *ngIf="property.images.length > 1">
+        {{ currentImageIndex + 1 }} / {{ property.images.length }}
+      </div>
+    </div>
+    
+    <!-- Thumbnail strip -->
+    <div class="thumbnail-strip" *ngIf="property.images.length > 1">
+      <div class="thumbnail" 
+           *ngFor="let image of property.images; let i = index"
+           [class.active]="i === currentImageIndex"
+           (click)="goToImage(i)">
+        <img [src]="image" [alt]="property.name + ' image ' + (i + 1)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Info -->
+  <div class="property-info">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-icon">👥</span>
+        <span class="info-text">{{ guests }} guest{{ guests !== 1 ? 's' : '' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🛏️</span>
+        <span class="info-text">{{ property.bedrooms }} bed{{ property.bedrooms !== 1 ? 's' : '' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🛁</span>
+        <span class="info-text">{{ property.bathrooms }} bath{{ property.bathrooms !== 1 ? 's' : '' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📐</span>
+        <span class="info-text">{{ property.area }} sq ft</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="description-section">
+    <h2>About this {{ property.propertyType }}</h2>
+    <p>{{ property.description }}</p>
+  </div>
+
+  <!-- Features -->
+  <div class="features-section" *ngIf="property.features.length > 0">
+    <h2>Amenities</h2>
+    <div class="features-grid">
+      <div class="feature-item" *ngFor="let feature of property.features">
+        <span class="feature-icon">✓</span>
+        <span class="feature-text">{{ feature }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Owner Info -->
+  <div class="owner-section">
+    <h2>Hosted by {{ property.owner.firstName }} {{ property.owner.lastName }}</h2>
+    <p>Contact: {{ property.owner.email }}</p>
+  </div>
+
+  <!-- Booking Section -->
+  <div class="booking-section">
+    <div class="price-info">
+      <div class="price-display">
+        <span class="price">{{ formatPrice(property.price) }}</span>
+        <span class="price-period">/night</span>
+      </div>
+      <div class="total-price" *ngIf="checkInDate && checkOutDate">
+        <span class="total-label">Total:</span>
+        <span class="total-amount">{{ formatPrice(calculateTotalPrice()) }}</span>
+      </div>
+    </div>
+
+    <div class="booking-form" *ngIf="!showBookingForm">
+      <div class="date-selection">
+        <div class="date-input">
+          <label>Check-in Date</label>
+          <input type="date" 
+                 [(ngModel)]="checkInDate" 
+                 [min]="getAvailableDates()[0]"
+                 [max]="getAvailableDates()[getAvailableDates().length - 1]">
+        </div>
+        <div class="date-input">
+          <label>Check-out Date</label>
+          <input type="date" 
+                 [(ngModel)]="checkOutDate" 
+                 [min]="checkInDate || getAvailableDates()[0]"
+                 [max]="getAvailableDates()[getAvailableDates().length - 1]">
+        </div>
+        <div class="guests-input">
+          <label>Guests</label>
+          <select [(ngModel)]="guests">
+            <option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">{{ num }} guest{{ num !== 1 ? 's' : '' }}</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="book-now-btn" (click)="onBookNow()">
+        Book Now
+      </button>
+    </div>
+
+    <div class="booking-confirmation" *ngIf="showBookingForm">
+      <h3>Confirm Your Booking</h3>
+      <div class="booking-summary">
+        <div class="summary-item">
+          <span class="summary-label">Check-in:</span>
+          <span class="summary-value">{{ checkInDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Check-out:</span>
+          <span class="summary-value">{{ checkOutDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Guests:</span>
+          <span class="summary-value">{{ guests }}</span>
+        </div>
+        <div class="summary-item total">
+          <span class="summary-label">Total:</span>
+          <span class="summary-value">{{ formatPrice(calculateTotalPrice()) }}</span>
+        </div>
+      </div>
+      
+      <div class="booking-actions">
+        <button class="cancel-btn" (click)="showBookingForm = false">
+          Cancel
+        </button>
+        <button class="confirm-btn" 
+                (click)="onConfirmBooking()"
+                [disabled]="bookingLoading">
+          <span *ngIf="bookingLoading" class="loading-spinner"></span>
+          {{ bookingLoading ? 'Confirming...' : 'Confirm Booking' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="loading">
+  <div class="loading-spinner"></div>
+  <p>Loading property details...</p>
+</div>
+
+<!-- Error State -->
+<div class="error-container" *ngIf="error">
+  <div class="error-message">
+    <span class="error-icon">⚠️</span>
+    {{ error }}
+  </div>
+  <button class="retry-button" (click)="loadProperty(property?.id || 0)">
+    Try Again
+  </button>
+</div>

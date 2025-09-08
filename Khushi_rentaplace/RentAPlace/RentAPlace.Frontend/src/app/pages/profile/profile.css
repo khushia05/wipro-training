@@ -1,0 +1,337 @@
+.profile-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.profile-header h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.profile-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.profile-header-section {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+}
+
+.avatar-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.user-role {
+  margin: 0;
+  color: #667eea;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.edit-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.edit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.edit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-section {
+  padding: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input.error {
+  border-color: #e53e3e;
+}
+
+.form-error {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cancel-button {
+  background: #f7fafc;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: #edf2f7;
+}
+
+.save-button {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(72, 187, 120, 0.3);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-details {
+  padding: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item label {
+  font-weight: 500;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.detail-item span {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.user-type-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: white;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-spinner.large {
+  width: 3rem;
+  height: 3rem;
+  border-width: 4px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: white;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(229, 62, 62, 0.1);
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+}
+
+.retry-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+  
+  .profile-header-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .profile-avatar {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}

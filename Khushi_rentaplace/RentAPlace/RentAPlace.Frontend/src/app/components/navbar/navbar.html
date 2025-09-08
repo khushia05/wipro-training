@@ -1,0 +1,134 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-brand" (click)="onLogoClick()">
+      <span class="logo-text">RentAPlace</span>
+    </div>
+
+    <!-- Navigation Links - Removed as requested -->
+
+    <!-- Right Side - Auth Section -->
+    <div class="navbar-auth">
+      <!-- Not Logged In -->
+      <div *ngIf="!isLoggedIn()" class="auth-buttons">
+        <button class="btn btn-outline" (click)="onLoginClick()">Login</button>
+        <button class="btn btn-primary" (click)="onRegisterClick()">Register</button>
+      </div>
+
+      <!-- Logged In -->
+      <div *ngIf="isLoggedIn()" class="user-section">
+        <div class="user-info">
+          <span class="user-name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span>
+          <span class="user-role">{{ currentUser?.userType }}</span>
+        </div>
+        
+        <div class="profile-dropdown" (click)="toggleDropdown()">
+          <div class="profile-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <!-- <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg> -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- <title>Profile</title> -->
+  <circle cx="12" cy="8" r="3.2" />
+  <path d="M4.5 20c0-3.2 3.6-5.5 7.5-5.5s7.5 2.3 7.5 5.5" />
+</svg>
+
+        </div>
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" *ngIf="showDropdown" (click)="$event.stopPropagation()">
+          <div class="dropdown-item" (click)="onProfileClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Profile
+          </div>
+          
+          <!-- User-specific menu items -->
+          <div *ngIf="currentUser?.userType === 'User'" class="dropdown-item" (click)="onBookingsClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v18H3zM8 7h8M8 11h8M8 15h5"/>
+            </svg>
+            My Bookings
+          </div>
+          <div *ngIf="currentUser?.userType === 'User'" class="dropdown-item" (click)="onFavoritesClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            My Favorites
+          </div>
+          
+          <!-- Owner-specific menu items -->
+          <div *ngIf="currentUser?.userType === 'Owner'" class="dropdown-item" (click)="onOwnerBookingsClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v18H3zM8 7h8M8 11h8M8 15h5"/>
+            </svg>
+            Property Bookings
+          </div>
+          <div *ngIf="currentUser?.userType === 'Owner'" class="dropdown-item" (click)="onMyPropertiesClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            My Properties
+          </div>
+          
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" (click)="onLogoutClick()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16,17 21,12 16,7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Logout
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" *ngIf="showMobileMenu">
+    <!-- Navigation links removed as requested -->
+    
+    <div class="mobile-auth" *ngIf="!isLoggedIn()">
+      <button class="btn btn-outline mobile-btn" (click)="onLoginClick(); closeMobileMenu()">Login</button>
+      <button class="btn btn-primary mobile-btn" (click)="onRegisterClick(); closeMobileMenu()">Register</button>
+    </div>
+    
+    <div class="mobile-user" *ngIf="isLoggedIn()">
+      <div class="mobile-user-info">
+        <span class="mobile-user-name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span>
+        <span class="mobile-user-role">{{ currentUser?.userType }}</span>
+      </div>
+      <div class="mobile-user-actions">
+        <button class="btn btn-outline mobile-btn" (click)="onProfileClick(); closeMobileMenu()">Profile</button>
+        
+        <!-- User-specific buttons -->
+        <button *ngIf="currentUser?.userType === 'User'" class="btn btn-outline mobile-btn" (click)="onBookingsClick(); closeMobileMenu()">My Bookings</button>
+        <button *ngIf="currentUser?.userType === 'User'" class="btn btn-outline mobile-btn" (click)="onFavoritesClick(); closeMobileMenu()">My Favorites</button>
+        
+        <!-- Owner-specific buttons -->
+        <button *ngIf="currentUser?.userType === 'Owner'" class="btn btn-outline mobile-btn" (click)="onOwnerBookingsClick(); closeMobileMenu()">Property Bookings</button>
+        <button *ngIf="currentUser?.userType === 'Owner'" class="btn btn-outline mobile-btn" (click)="onMyPropertiesClick(); closeMobileMenu()">My Properties</button>
+        
+        <button class="btn btn-outline mobile-btn" (click)="onLogoutClick(); closeMobileMenu()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

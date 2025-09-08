@@ -1,0 +1,138 @@
+<div class="owner-bookings-container">
+  <div class="owner-bookings-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>Property Bookings</h1>
+  </div>
+
+  <div class="owner-bookings-content" *ngIf="!loading && bookings.length > 0">
+    <div class="bookings-filters">
+      <div class="filter-group">
+        <label for="statusFilter">Filter by Status:</label>
+        <select 
+          id="statusFilter" 
+          [(ngModel)]="filterStatus" 
+          (change)="onFilterChange()"
+          class="filter-select">
+          <option value="all">All Bookings</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="bookings-list">
+      <div class="booking-card" *ngFor="let booking of filteredBookings">
+        <div class="booking-image">
+          <img [src]="booking.propertyImage || '/assets/placeholder-property.jpg'" 
+               [alt]="booking.propertyName"
+               (error)="$event.target.src='/assets/placeholder-property.jpg'">
+        </div>
+        
+        <div class="booking-details">
+          <div class="booking-header">
+            <h3 class="property-name">{{ booking.propertyName }}</h3>
+            <span class="booking-status" [ngClass]="getStatusClass(booking.status)">
+              {{ booking.status }}
+            </span>
+          </div>
+          
+          <div class="customer-info">
+            <h4>Customer Information</h4>
+            <div class="customer-details">
+              <div class="info-item">
+                <span class="info-label">Name:</span>
+                <span class="info-value">{{ booking.customerName }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{ booking.customerEmail }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Phone:</span>
+                <span class="info-value">{{ booking.customerPhone }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="booking-info">
+            <div class="info-item">
+              <span class="info-label">Property Address:</span>
+              <span class="info-value">{{ booking.propertyAddress }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Check-in:</span>
+              <span class="info-value">{{ formatDate(booking.checkInDate) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Check-out:</span>
+              <span class="info-value">{{ formatDate(booking.checkOutDate) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Total Price:</span>
+              <span class="info-value price">{{ formatPrice(booking.totalPrice) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Booked on:</span>
+              <span class="info-value">{{ formatDate(booking.createdAt) }}</span>
+            </div>
+          </div>
+          
+          <div class="booking-actions">
+            <button 
+              class="view-property-btn" 
+              (click)="viewProperty(booking.propertyId)">
+              View Property
+            </button>
+            
+            <div class="status-actions" *ngIf="booking.status === 'Pending'">
+              <button 
+                class="confirm-booking-btn" 
+                (click)="updateBookingStatus(booking.id, 'Confirmed')"
+                [disabled]="loading">
+                Confirm
+              </button>
+              <button 
+                class="cancel-booking-btn" 
+                (click)="updateBookingStatus(booking.id, 'Cancelled')"
+                [disabled]="loading">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && bookings.length === 0">
+    <div class="empty-icon">📅</div>
+    <h2>No Bookings Yet</h2>
+    <p>You don't have any bookings for your properties yet. When customers book your properties, they will appear here.</p>
+    <button class="explore-btn" (click)="router.navigate(['/my-properties'])">
+      Manage Properties
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading property bookings...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadOwnerBookings()">
+      Try Again
+    </button>
+  </div>
+</div>

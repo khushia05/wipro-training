@@ -1,0 +1,193 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h1 class="register-title">Create Account</h1>
+      <p class="register-subtitle">Join RentAPlace and start your journey</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <!-- User Type Selection -->
+      <div class="form-group">
+        <label class="form-label">I am a</label>
+        <div class="user-type-selector">
+          <div 
+            *ngFor="let userType of userTypes" 
+            class="user-type-option"
+            [class.selected]="registerForm.get('userType')?.value === userType.value"
+            (click)="onUserTypeChange(userType.value)">
+            <div class="user-type-radio">
+              <div class="radio-dot" *ngIf="registerForm.get('userType')?.value === userType.value"></div>
+            </div>
+            <div class="user-type-content">
+              <div class="user-type-label">{{ userType.label }}</div>
+              <div class="user-type-description">{{ userType.description }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Name Fields -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-input"
+            [class.error]="getFieldError('firstName')"
+            placeholder="Enter your first name">
+          <div class="form-error" *ngIf="getFieldError('firstName')">
+            {{ getFieldError('firstName') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-input"
+            [class.error]="getFieldError('lastName')"
+            placeholder="Enter your last name">
+          <div class="form-error" *ngIf="getFieldError('lastName')">
+            {{ getFieldError('lastName') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="getFieldError('email')"
+          placeholder="Enter your email">
+        <div class="form-error" *ngIf="getFieldError('email')">
+          {{ getFieldError('email') }}
+        </div>
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="form-group">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          class="form-input"
+          [class.error]="getFieldError('phoneNumber')"
+          placeholder="Enter your phone number">
+        <div class="form-error" *ngIf="getFieldError('phoneNumber')">
+          {{ getFieldError('phoneNumber') }}
+        </div>
+      </div>
+
+      <!-- Password Fields -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-input"
+            [class.error]="getFieldError('password')"
+            placeholder="Create a password">
+          
+          <!-- Password Strength Indicator -->
+          <div class="password-strength" *ngIf="registerForm.get('password')?.value">
+            <div class="strength-bar">
+              <div 
+                class="strength-fill" 
+                [style.width.%]="getPasswordStrength() === 'weak' ? 20 : getPasswordStrength() === 'medium' ? 60 : 100"
+                [style.background-color]="getPasswordStrengthColor()">
+              </div>
+            </div>
+            <div class="strength-text" [style.color]="getPasswordStrengthColor()">
+              Password strength: {{ getPasswordStrength() | titlecase }}
+            </div>
+          </div>
+          
+          <!-- Password Requirements -->
+          <div class="password-requirements" *ngIf="registerForm.get('password')?.value">
+            <div class="requirement" [class.valid]="hasUppercase()">
+              <span class="requirement-icon">✓</span>
+              Uppercase letter
+            </div>
+            <div class="requirement" [class.valid]="hasLowercase()">
+              <span class="requirement-icon">✓</span>
+              Lowercase letter
+            </div>
+            <div class="requirement" [class.valid]="hasNumber()">
+              <span class="requirement-icon">✓</span>
+              Number
+            </div>
+            <div class="requirement" [class.valid]="hasSpecialCharacter()">
+              <span class="requirement-icon">✓</span>
+              Special character
+            </div>
+            <div class="requirement" [class.valid]="(registerForm.get('password')?.value?.length || 0) >= 8">
+              <span class="requirement-icon">✓</span>
+              At least 8 characters
+            </div>
+          </div>
+          
+          <div class="form-error" *ngIf="getFieldError('password')">
+            {{ getFieldError('password') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            class="form-input"
+            [class.error]="getFieldError('confirmPassword')"
+            placeholder="Confirm your password">
+          <div class="form-error" *ngIf="getFieldError('confirmPassword')">
+            {{ getFieldError('confirmPassword') }}
+          </div>
+          <div class="form-error" *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+            Passwords do not match
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="error">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+        {{ error }}
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        class="register-button"
+        [disabled]="isLoading">
+        <div class="button-content">
+          <div class="loading-spinner" *ngIf="isLoading"></div>
+          <span *ngIf="!isLoading">Create Account</span>
+          <span *ngIf="isLoading">Creating Account...</span>
+        </div>
+      </button>
+    </form>
+
+    <div class="register-footer">
+      <p class="login-text">
+        Already have an account? 
+        <a (click)="onLoginClick()" class="login-link">Sign in here</a>
+      </p>
+    </div>
+  </div>
+</div>

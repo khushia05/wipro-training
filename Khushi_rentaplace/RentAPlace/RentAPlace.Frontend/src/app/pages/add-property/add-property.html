@@ -1,0 +1,382 @@
+<div class="add-property-container">
+  <div class="add-property-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>Add New Property</h1>
+  </div>
+
+  <div class="add-property-content">
+    <div class="property-form-card">
+      <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+        <div class="form-section">
+          <h2>Basic Information</h2>
+          
+          <div class="form-group">
+            <label for="name">Property Name *</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-input"
+              [class.error]="getFieldError('name')"
+              placeholder="Enter property name">
+            <div class="form-error" *ngIf="getFieldError('name')">
+              {{ getFieldError('name') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="form-textarea"
+              [class.error]="getFieldError('description')"
+              placeholder="Describe your property..."
+              rows="4"></textarea>
+            <div class="form-error" *ngIf="getFieldError('description')">
+              {{ getFieldError('description') }}
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group">
+              <label for="propertyTypeId">Property Type *</label>
+              <select
+                id="propertyTypeId"
+                formControlName="propertyTypeId"
+                class="form-select"
+                [class.error]="getFieldError('propertyTypeId')">
+                <option value="">Select property type</option>
+                <option *ngFor="let type of propertyTypes" [value]="type.id">
+                  {{ type.name }}
+                </option>
+              </select>
+              <div class="form-error" *ngIf="getFieldError('propertyTypeId')">
+                {{ getFieldError('propertyTypeId') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price per Month ($) *</label>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="form-input"
+                [class.error]="getFieldError('price')"
+                placeholder="0.00"
+                step="0.01">
+              <div class="form-error" *ngIf="getFieldError('price')">
+                {{ getFieldError('price') }}
+              </div>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <!-- Property Type -->
+            <div class="form-group">
+              <label for="propertyTypeId">Property Type *</label>
+              <select
+                id="propertyTypeId"
+                formControlName="propertyTypeId"
+                class="form-select"
+                [class.error]="getFieldError('propertyTypeId')">
+                <option value="">Select property type</option>
+                <option value="1">Apartment</option>
+                <option value="2">Villa</option>
+                <option value="3">Townhouse</option>
+                <option value="4">Studio</option>
+                <option value="5">House</option>
+              </select>
+              <div class="form-error" *ngIf="getFieldError('propertyTypeId')">
+                {{ getFieldError('propertyTypeId') }}
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group">
+              <label for="price">Price per Night (₹) *</label>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="form-input"
+                [class.error]="getFieldError('price')"
+                placeholder="00.00"
+                step="0.01">
+              <div class="form-error" *ngIf="getFieldError('price')">
+                {{ getFieldError('price') }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Photo Upload Section -->
+        <div class="form-section">
+          <h2>Property Photos</h2>
+          <p class="section-description">Upload photos of your property. You can add multiple photos and set one as primary.</p>
+          
+          <!-- File Upload Area -->
+          <div class="photo-upload-area"
+               [class.drag-over]="isDragOver"
+               (dragover)="onDragOver($event)"
+               (dragleave)="onDragLeave($event)"
+               (drop)="onDrop($event)"
+               (click)="fileInput.click()">
+            <div class="upload-content">
+              <div class="upload-icon">📷</div>
+              <h3>Upload Property Photos</h3>
+              <p>Drag and drop images here or click to browse</p>
+              <p class="upload-hint">Supports JPG, PNG, WebP (max 10MB each)</p>
+            </div>
+            <input
+              #fileInput
+              type="file"
+              multiple
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              style="display: none;">
+          </div>
+
+          <!-- Selected Images Preview -->
+          <div class="selected-images" *ngIf="selectedImages.length > 0">
+            <h4>Selected Photos ({{ selectedImages.length }})</h4>
+            <div class="images-grid">
+              <div 
+                *ngFor="let image of selectedImages; let i = index" 
+                class="image-preview"
+                [class.primary]="i === primaryImageIndex">
+                <img [src]="image.preview" [alt]="'Property image ' + (i + 1)">
+                <div class="image-overlay">
+                  <button 
+                    type="button" 
+                    class="btn-primary-image"
+                    (click)="setPrimaryImage(i)"
+                    [class.active]="i === primaryImageIndex">
+                    {{ i === primaryImageIndex ? 'Primary' : 'Set Primary' }}
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn-remove-image"
+                    (click)="removeImage(i)">
+                    ✕
+                  </button>
+                </div>
+                <div class="primary-badge" *ngIf="i === primaryImageIndex">Primary</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upload Progress -->
+          <div class="upload-progress" *ngIf="uploadProgress > 0 && uploadProgress < 100">
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="uploadProgress"></div>
+            </div>
+            <p>Uploading images... {{ uploadProgress }}%</p>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Location</h2>
+          
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              class="form-input"
+              [class.error]="getFieldError('address')"
+              placeholder="Street address">
+            <div class="form-error" *ngIf="getFieldError('address')">
+              {{ getFieldError('address') }}
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input
+                type="text"
+                id="city"
+                formControlName="city"
+                class="form-input"
+                [class.error]="getFieldError('city')"
+                placeholder="City">
+              <div class="form-error" *ngIf="getFieldError('city')">
+                {{ getFieldError('city') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="state">State *</label>
+              <input
+                type="text"
+                id="state"
+                formControlName="state"
+                class="form-input"
+                [class.error]="getFieldError('state')"
+                placeholder="State">
+              <div class="form-error" *ngIf="getFieldError('state')">
+                {{ getFieldError('state') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="zipCode">ZIP Code *</label>
+              <input
+                type="text"
+                id="zipCode"
+                formControlName="zipCode"
+                class="form-input"
+                [class.error]="getFieldError('zipCode')"
+                placeholder="123456">
+              <div class="form-error" *ngIf="getFieldError('zipCode')">
+                {{ getFieldError('zipCode') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country *</label>
+            <input
+              type="text"
+              id="country"
+              formControlName="country"
+              class="form-input"
+              [class.error]="getFieldError('country')"
+              placeholder="India">
+            <div class="form-error" *ngIf="getFieldError('country')">
+              {{ getFieldError('country') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Property Details</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bedrooms">Bedrooms *</label>
+              <input
+                type="number"
+                id="bedrooms"
+                formControlName="bedrooms"
+                class="form-input"
+                [class.error]="getFieldError('bedrooms')"
+                placeholder="0"
+                min="0">
+              <div class="form-error" *ngIf="getFieldError('bedrooms')">
+                {{ getFieldError('bedrooms') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bathrooms">Bathrooms *</label>
+              <input
+                type="number"
+                id="bathrooms"
+                formControlName="bathrooms"
+                class="form-input"
+                [class.error]="getFieldError('bathrooms')"
+                placeholder="0"
+                min="0"
+                step="0.5">
+              <div class="form-error" *ngIf="getFieldError('bathrooms')">
+                {{ getFieldError('bathrooms') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="area">Area (sq ft) *</label>
+              <input
+                type="number"
+                id="area"
+                formControlName="area"
+                class="form-input"
+                [class.error]="getFieldError('area')"
+                placeholder="0"
+                min="1">
+              <div class="form-error" *ngIf="getFieldError('area')">
+                {{ getFieldError('area') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="maxGuests">Maximum Guests *</label>
+            <input
+              type="number"
+              id="maxGuests"
+              formControlName="maxGuests"
+              class="form-input"
+              [class.error]="getFieldError('maxGuests')"
+              placeholder="1"
+              min="1">
+            <div class="form-error" *ngIf="getFieldError('maxGuests')">
+              {{ getFieldError('maxGuests') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="isAvailable"
+                class="checkbox-input">
+              <span class="checkbox-text">Property is available for rent</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Features</h2>
+          <div class="features-grid">
+            <label *ngFor="let feature of propertyFeatures" class="feature-checkbox">
+              <input
+                type="checkbox"
+                [checked]="isFeatureSelected(feature.id)"
+                (change)="onFeatureChange(feature.id, $event.target.checked)"
+                class="feature-input">
+              <span class="feature-text">{{ feature.name }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="goBack()"
+            [disabled]="loading">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="submit-button"
+            [disabled]="propertyForm.invalid || loading">
+            <span *ngIf="loading" class="loading-spinner"></span>
+            {{ loading ? 'Adding Property...' : 'Add Property' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="success-message" *ngIf="success">
+    <div class="success-content">
+      <span class="success-icon">✅</span>
+      {{ success }}
+    </div>
+  </div>
+
+  <div class="error-message" *ngIf="error">
+    <div class="error-content">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+  </div>
+</div>

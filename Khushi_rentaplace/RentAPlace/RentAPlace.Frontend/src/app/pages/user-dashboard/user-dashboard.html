@@ -1,0 +1,98 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Welcome back, {{ user?.firstName }}!</h1>
+    <p class="dashboard-subtitle">Find your perfect place to stay</p>
+  </div>
+
+  <div class="dashboard-content">
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="actions-grid">
+        <div class="action-card" (click)="onSearchProperties()">
+          <div class="action-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+          </div>
+          <h3 class="action-title">Search Properties</h3>
+          <p class="action-description">Find your next perfect stay</p>
+        </div>
+
+        <div class="action-card" (click)="onViewBookings()">
+          <div class="action-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="action-title">My Bookings</h3>
+          <p class="action-description">View and manage your reservations</p>
+        </div>
+
+        <div class="action-card" (click)="onViewFavorites()">
+          <div class="action-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="action-title">Favorites</h3>
+          <p class="action-description">Your saved properties</p>
+        </div>
+
+        <div class="action-card" (click)="onViewProfile()">
+          <div class="action-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="action-title">Profile</h3>
+          <p class="action-description">Manage your account settings</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-activity">
+      <h2 class="section-title">Recent Activity</h2>
+      <div class="activity-card">
+        <div class="activity-empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <h3>No recent activity</h3>
+          <p>Start by searching for properties to see your activity here</p>
+          <button class="btn btn-primary" (click)="onSearchProperties()">Search Properties</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="statistics">
+      <h2 class="section-title">Your Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Total Bookings</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Reviews Written</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Favorites</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$0</div>
+          <div class="stat-label">Total Spent</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

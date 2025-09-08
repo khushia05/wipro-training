@@ -1,0 +1,7 @@
+<div class="category-card" (click)="onCategoryClick()">
+  <div class="category-image">
+    <img [src]="category.image" [alt]="category.name">
+  </div>
+  <h3 class="category-name">{{ category.name }}</h3>
+  <p class="category-description" *ngIf="category.description">{{ category.description }}</p>
+</div>

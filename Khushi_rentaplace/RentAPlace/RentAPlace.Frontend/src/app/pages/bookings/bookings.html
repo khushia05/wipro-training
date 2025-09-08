@@ -1,0 +1,113 @@
+<div class="bookings-container">
+  <div class="bookings-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
+    <h1>My Bookings</h1>
+  </div>
+
+  <div class="bookings-content" *ngIf="!loading && bookings.length > 0">
+    <div class="bookings-filters">
+      <div class="filter-group">
+        <label for="statusFilter">Filter by Status:</label>
+        <select 
+          id="statusFilter" 
+          [(ngModel)]="filterStatus" 
+          (change)="onFilterChange()"
+          class="filter-select">
+          <option value="all">All Bookings</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="bookings-list">
+      <div class="booking-card" *ngFor="let booking of filteredBookings">
+        <div class="booking-image">
+          <img [src]="getImageUrl(booking.propertyImage)" 
+               [alt]="booking.propertyName"
+               (error)="onImageError($event)">
+        </div>
+        
+        <div class="booking-details">
+          <div class="booking-header">
+            <h3 class="property-name">{{ booking.propertyName }}</h3>
+            <span class="booking-status" [ngClass]="getStatusClass(booking.status)">
+              {{ booking.status }}
+            </span>
+          </div>
+          
+          <div class="booking-info">
+            <div class="info-item">
+              <span class="info-label">Address:</span>
+              <span class="info-value">{{ booking.propertyAddress }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Check-in:</span>
+              <span class="info-value">{{ formatDate(booking.checkInDate) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Check-out:</span>
+              <span class="info-value">{{ formatDate(booking.checkOutDate) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Total Price:</span>
+              <span class="info-value price">{{ formatPrice(booking.totalPrice) }}</span>
+            </div>
+            
+            <div class="info-item">
+              <span class="info-label">Booked on:</span>
+              <span class="info-value">{{ formatDate(booking.createdAt) }}</span>
+            </div>
+          </div>
+          
+          <div class="booking-actions">
+            <button 
+              class="view-property-btn" 
+              (click)="viewProperty(booking.propertyId)">
+              View Property
+            </button>
+            
+            <button 
+              *ngIf="booking.status === 'Pending' || booking.status === 'Confirmed'"
+              class="cancel-booking-btn" 
+              (click)="cancelBooking(booking.id)"
+              [disabled]="loading">
+              Cancel Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && bookings.length === 0">
+    <div class="empty-icon">📅</div>
+    <h2>No Bookings Yet</h2>
+    <p>You haven't made any bookings yet. Start exploring properties to make your first booking!</p>
+    <button class="explore-btn" (click)="router.navigate(['/'])">
+      Explore Properties
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading your bookings...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-message">
+      <span class="error-icon">⚠️</span>
+      {{ error }}
+    </div>
+    <button class="retry-button" (click)="loadBookings()">
+      Try Again
+    </button>
+  </div>
+</div>
