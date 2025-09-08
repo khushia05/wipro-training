@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aaRS7y4tbYE=",
+  "dgSpecHash": "LslWwMJtEc0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pkagr\\Downloads\\RentAPlace (1)\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
+  "projectFilePath": "E:\\Placement preparation\\wipro_training\\Khushi_rentaplace\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pkagr\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\pkagr\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

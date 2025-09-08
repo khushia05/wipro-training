@@ -2838,11 +2838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pkagr\\Downloads\\RentAPlace (1)\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
+      "projectUniqueName": "E:\\Placement preparation\\wipro_training\\Khushi_rentaplace\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
       "projectName": "RentAPlace.API",
-      "projectPath": "C:\\Users\\pkagr\\Downloads\\RentAPlace (1)\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
+      "projectPath": "E:\\Placement preparation\\wipro_training\\Khushi_rentaplace\\RentAPlace\\RentAPlace.API\\RentAPlace.API.csproj",
       "packagesPath": "C:\\Users\\pkagr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pkagr\\Downloads\\RentAPlace (1)\\RentAPlace\\RentAPlace.API\\obj\\",
+      "outputPath": "E:\\Placement preparation\\wipro_training\\Khushi_rentaplace\\RentAPlace\\RentAPlace.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pkagr\\AppData\\Roaming\\NuGet\\NuGet.Config"
